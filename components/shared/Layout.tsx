@@ -1,28 +1,27 @@
-import React from "react";
-import { StyleSheet, View, Text, Dimensions, Platform } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, View, Platform } from "react-native";
 
-const { height, width } = Dimensions.get("window");
 const Layout = ({ children }) => {
-  // function displayWindowSize(){
-  //   // Get width and height of the window excluding scrollbars
-  //   var w = document.documentElement.clientWidth;
-  //   var h = document.documentElement.clientHeight;
+  const [fullScreen, setFullScreen] = useState(Platform.OS !== "web");
 
-  //   console.log(w,h)
-  // }
+  if (Platform.OS === "web") {
+    const displayWindowSize = () => {
+      var w = document.documentElement.clientWidth;
+      var h = document.documentElement.clientHeight;
+      const isVertical = h / w > 1;
+      const shouldFullScreen = (isVertical && w <= 800) || h <= 600;
+      if (shouldFullScreen != fullScreen) setFullScreen(shouldFullScreen);
+    };
+    window.addEventListener("resize", displayWindowSize);
+    displayWindowSize();
+  }
 
-  // // Attaching the event listener function to window's resize event
-  // window.addEventListener("resize", displayWindowSize);
-
-  // // Calling the function for the first time
-  // displayWindowSize();
-  if (Platform.OS === "web")
-    return (
-      <View style={styles.body}>
-        <View style={styles.contentArea}>{children}</View>
-      </View>
-    );
-  return children;
+  if (fullScreen) return children;
+  return (
+    <View style={styles.body}>
+      <View style={styles.contentArea}>{children}</View>
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({

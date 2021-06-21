@@ -9,11 +9,14 @@ import ChatBubble from "./ChatBubble";
 
 const ChatRoomPage = () => {
   const flatListRef = useRef();
+
+  const handleSend = (text) => {};
+
   return (
     <Layout>
       <Header />
       <FlatList
-        ref={flatListRef}
+        //ref={flatListRef}
         style={styles.flatList}
         data={chats}
         inverted
@@ -27,7 +30,7 @@ const ChatRoomPage = () => {
           return <ChatBubble text={item.text} />;
         }}
       />
-      <InputBar />
+      <InputBar onSend={(text) => handleSend(text)} />
     </Layout>
   );
 };

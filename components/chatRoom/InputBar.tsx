@@ -7,18 +7,22 @@ import Icon from "../../assets/Icon";
 const InputBar = () => {
   return (
     <SafeAreaView style={styles.body}>
-      <TextInput style={styles.textInput} />
-      <TouchableOpacity style={styles.sendButton}>
-        <Icon name="send" color="white" size={18} />
-      </TouchableOpacity>
+      <View style={styles.inputBar}>
+        <TextInput style={styles.textInput} />
+        <TouchableOpacity style={styles.sendButton}>
+          <Icon name="send" color="white" size={18} />
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   body: {
-    height: 60,
     backgroundColor: "white",
+  },
+  inputBar: {
+    height: 60,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",

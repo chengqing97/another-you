@@ -13,13 +13,16 @@
     "electron": "expo-electron start"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.15.5",
     "@react-native-community/masked-view": "^0.1.11",
+    "@react-native-google-signin/google-signin": "^6.0.1",
     "@react-navigation/native": "^5.9.4",
     "@react-navigation/stack": "^5.14.5",
+    "axios": "^0.21.1",
     "electron": "^6.0.12",
     "expo": "~41.0.1",
     "expo-splash-screen": "~0.10.2",
-    "expo-updates": "~0.5.4",
+    "expo-updates": "^0.5.5",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "~0.63.4",
