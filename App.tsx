@@ -1,11 +1,20 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+//import components
+import ChatRoomPage from "./components/chatRoom/ChatRoomPage"
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator headerMode="none">
+      <Stack.Screen name="ChatRoom" component={ChatRoomPage} />
+    </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
