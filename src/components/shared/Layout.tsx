@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Platform } from "react-native";
 
-const Layout = ({ children }) => {
+interface Props {
+  children: React.ReactElement;
+}
+
+const Layout = ({ children }: Props) => {
   const [fullScreen, setFullScreen] = useState(Platform.OS !== "web");
 
   if (Platform.OS === "web") {

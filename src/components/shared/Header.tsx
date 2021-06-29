@@ -1,10 +1,10 @@
 import React from "react";
-import { StyleSheet, View, Text, SafeAreaView, Platform, StatusBar } from "react-native";
+import { StyleSheet, View, Text, SafeAreaView } from "react-native";
 
 const Header = () => {
   return (
     <View style={styles.body}>
-      <SafeAreaView style={styles.statusBar} />
+      <SafeAreaView />
       <View style={styles.header}>
         <Text>ChengQing</Text>
       </View>
@@ -14,9 +14,6 @@ const Header = () => {
 const styles = StyleSheet.create({
   body: {
     backgroundColor: "white",
-  },
-  statusBar: {
-    height: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
   header: {
     height: 60,

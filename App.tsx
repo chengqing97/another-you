@@ -1,23 +1,12 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
 
-//import components
-import ChatRoomPage from "./components/chatRoom/ChatRoomPage";
-import LoginPage from "./components/auth/LoginPage";
-
-const Stack = createStackNavigator();
+//import stacks
+import MainStack from "./src/routes/MainStack";
+import AuthStack from "./src/routes/AuthStack";
 
 export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  if (!isLoggedIn) return <LoginPage />;
-  return (
-    <NavigationContainer>
-      <Stack.Navigator headerMode="none">
-        <Stack.Screen name="ChatRoom" component={ChatRoomPage} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+  if (isLoggedIn) return <MainStack />;
+  return <AuthStack setIsLoggedIn={setIsLoggedIn} />;
 }

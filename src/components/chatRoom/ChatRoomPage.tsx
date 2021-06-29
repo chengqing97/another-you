@@ -12,29 +12,31 @@ const ChatRoomPage = () => {
   const [chats, setChats] = useState(chatsData);
 
   const handleSend = (text: string) => {
+    console.log("message:", text);
     setChats([...chats, { id: chats.length, text: text }]);
   };
 
   return (
     <Layout>
-      <Header />
-      <FlatList
-        //ref={flatListRef}
-        style={styles.flatList}
-        contentContainerStyle={styles.flatListContentContainer}
-        data={chats}
-        inverted={false}
-        showsVerticalScrollIndicator={true}
-        keyExtractor={(item, index) => index.toString()}
-        initialNumToRender={20}
-        ListEmptyComponent={<Text>No message yet.</Text>}
-        onEndReachedThreshold={4}
-        onEndReached={() => console.log("end reached")}
-        renderItem={({ item, index }) => {
-          return <ChatBubble text={item.text} />;
-        }}
-      />
-      <InputBar onSend={handleSend} />
+      <>
+        <Header />
+        <FlatList
+          //ref={flatListRef}
+          style={styles.flatList}
+          contentContainerStyle={styles.flatListContentContainer}
+          data={chats}
+          inverted={false}
+          showsVerticalScrollIndicator={true}
+          keyExtractor={(item, index) => index.toString()}
+          initialNumToRender={20}
+          ListEmptyComponent={<Text>No message yet.</Text>}
+          onEndReachedThreshold={4}
+          renderItem={({ item, index }) => {
+            return <ChatBubble text={item.text} />;
+          }}
+        />
+        <InputBar onSend={handleSend} />
+      </>
     </Layout>
   );
 };
