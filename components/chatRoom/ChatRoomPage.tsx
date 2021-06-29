@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { StyleSheet, FlatList, Text } from "react-native";
 
 //import components
@@ -9,8 +9,11 @@ import ChatBubble from "./ChatBubble";
 
 const ChatRoomPage = () => {
   const flatListRef = useRef();
+  const [chats, setChats] = useState(chatsData);
 
-  const handleSend = (text) => {};
+  const handleSend = (text: string) => {
+    setChats([...chats, { id: chats.length, text: text }]);
+  };
 
   return (
     <Layout>
@@ -18,8 +21,9 @@ const ChatRoomPage = () => {
       <FlatList
         //ref={flatListRef}
         style={styles.flatList}
+        contentContainerStyle={styles.flatListContentContainer}
         data={chats}
-        inverted
+        inverted={false}
         showsVerticalScrollIndicator={true}
         keyExtractor={(item, index) => index.toString()}
         initialNumToRender={20}
@@ -30,20 +34,23 @@ const ChatRoomPage = () => {
           return <ChatBubble text={item.text} />;
         }}
       />
-      <InputBar onSend={(text) => handleSend(text)} />
+      <InputBar onSend={handleSend} />
     </Layout>
   );
 };
 
 const styles = StyleSheet.create({
-  flatList: {
+  flatList: {},
+  flatListContentContainer: {
     backgroundColor: "rgb(243, 243, 243)",
+    justifyContent: "flex-end",
+    flex: 1,
   },
 });
 
 export default ChatRoomPage;
 
-const chats = [
+const chatsData = [
   {
     id: 1,
     text: "hello",
